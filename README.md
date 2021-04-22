@@ -1,4 +1,4 @@
-# test for idaproject
+# Test for idaproject
 
 ## Build Setup
 
