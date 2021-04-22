@@ -1,4 +1,4 @@
-# testing-nuxt
+# test for idaproject
 
 ## Build Setup
 
