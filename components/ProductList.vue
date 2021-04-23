@@ -48,6 +48,7 @@ export default {
       return param === 'price' ? this.sortingPrice() : this.sortingRating()
     },
   },
+  
 }
 </script>
 

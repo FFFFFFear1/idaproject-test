@@ -14,7 +14,7 @@
         />
       </div>
       <div class="add">
-        <img src="~/assets/images/Shop.png" alt="" />
+        <img @click="add" src="~/assets/images/Shop.png" alt="" />
       </div>
     </div>
     <div class="description">
@@ -27,11 +27,43 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
+  // computed: {
+  //   products() {
+  //     return this.$store.state.products
+  //   },
+  // },
   props: {
     product: {
       type: Object,
     },
+  },
+  methods: {
+    ...mapActions(['bag/addProduct']),
+    async add(product) {
+      // await this.$store.dispatch('store/setProducts', product)
+
+      await this.$store.dispatch('store/addProduct', product)
+      console.log(this.$store.getters['store/products'])
+    },
+    // async add() {
+    //   await this.$store.commit('setProducts', [])
+    //   await this.$store.dispatch('index/products')
+    //   console.log(newArr)
+
+    //   // newArr.push(this.product)
+    //   // this.$store.dispatch('index/addProduct', newArr)
+    //   // this.$store.commit('setProducts', newArr)
+    //   // console.log(this.$store.state.products)
+
+    //   // console.log(this.$store.state.products)
+    //   // if (this.$store.getters['index/products'].length == 0) {
+    //   //   console.log(this.$store.state.products, true)
+    //   // }
+    //   // this.$store.commit('setProducts', this.product)
+    //   // console.log(this.$store.state.products)
+    // },
   },
 }
 </script>

@@ -15,6 +15,7 @@ export default {
   data() {
     return {
       shopIsOpen: false,
+      shoppingBag: [],
     }
   },
   components: {
@@ -26,6 +27,15 @@ export default {
     openShop() {
       this.shopIsOpen = !this.shopIsOpen
     },
+  },
+
+  computed: {
+    // products() {
+    //   return this.$store.state.products
+    // },
+  },
+  created() {
+    // console.log(this.$store.state.products)
   },
 }
 </script>
