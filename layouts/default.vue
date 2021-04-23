@@ -2,16 +2,19 @@
   <div>
     <Header />
     <Nuxt />
+    <!-- <Shop /> -->
   </div>
 </template>
 
 <script>
 import Header from '~/components/Header'
 import Aside from '~/components/Aside'
+import Shop from '~/components/Shop'
 export default {
   components: {
     Header,
     Aside,
+    Shop,
   },
 }
 </script>

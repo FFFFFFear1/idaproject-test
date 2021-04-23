@@ -1,10 +1,10 @@
 <template>
   <div class="containerList">
     <div class="selector">
-      <label>Сортировать по: </label>
+      <label>Сортировать: </label>
       <select name="" id="">
-        <option value="цене">По цене</option>
-        <option value="популярности">По популярности</option>
+        <option value="цене">по цене</option>
+        <option value="популярности">по популярности</option>
       </select>
     </div>
     <div class="list">
@@ -40,6 +40,12 @@ export default {
   display: flex;
   /* align-content: center; */
   justify-content: flex-end;
+}
+select {
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 .list {
   width: 70rem;

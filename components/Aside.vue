@@ -16,20 +16,17 @@ button {
   text-align: left;
   background-color: white;
   border: none;
-  font-size: 18px;
+  font-size: 16px;
 }
 h2 {
   font-weight: 700;
   font-size: 30px;
-  margin-bottom: 1rem;
-}
-.aside-container {
-  width: 200px;
+  margin-bottom: 0.5rem;
 }
 .aside-handler {
-  width: 200px;
-  height: 180px;
-  margin: 7rem 0;
+  width: 160px;
+  height: 160px;
+  margin: 6rem 0;
   text-align: left;
   display: flex;
   flex-direction: column;

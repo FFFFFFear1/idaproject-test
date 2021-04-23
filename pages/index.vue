@@ -2,6 +2,7 @@
   <div class="container">
     <Aside />
     <ProductList />
+    
   </div>
 </template>
 

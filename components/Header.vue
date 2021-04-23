@@ -25,20 +25,27 @@ header {
   justify-content: space-between;
   align-content: center;
   background-color: white;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
 }
 .header__title {
-  margin-left: 55px;
+  margin-left: 80px;
   margin-top: 1.3rem;
   color: grey;
+  font-size: 15px;
 }
 .header__shop-btn {
   height: auto;
-  width: 100px;
+  width: 120px;
   margin-top: 1.3rem;
 }
 .header__shop-btn img {
+  cursor: pointer;
   max-width: 27px;
   max-height: 27px;
+  transition: 500ms;
+}
+.header__shop-btn img:hover {
+  filter: contrast(10%);
+  transition: 500ms;
 }
 </style>
