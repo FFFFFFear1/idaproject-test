@@ -2,20 +2,21 @@
   <div class="containerList">
     <div class="selector">
       <label>Сортировать: </label>
-      <select name="" id="">
-        <option value="цене">по цене</option>
-        <option value="популярности">по популярности</option>
+      <select
+        @change="(value) => sort(value.target.value)"
+        :value="selected"
+        v-model="selected"
+      >
+        <option selected disabled value="">не выбрано</option>
+        <option value="price">по цене</option>
+        <option value="rating">по популярности</option>
       </select>
     </div>
     <div class="list">
       <Product
         v-for="product in products"
         :key="product.index"
-        v-bind:id="product.id"
-        v-bind:name="product.name"
-        v-bind:photo="product.photo"
-        v-bind:price="product.price"
-        v-bind:rating="product.rating"
+        v-bind:product="product"
       />
     </div>
   </div>
@@ -24,12 +25,29 @@
 <script>
 import Product from '~/components/Product'
 export default {
+  data() {
+    return {
+      selected: '',
+    }
+  },
   props: {
     products: {
       type: Array,
     },
+    sortingRating: {
+      type: Function,
+    },
+    sortingPrice: {
+      type: Function,
+    },
   },
   components: { Product },
+  methods: {
+    sort(param) {
+      console.log(param)
+      return param === 'price' ? this.sortingPrice() : this.sortingRating()
+    },
+  },
 }
 </script>
 
@@ -40,7 +58,6 @@ export default {
 .selector {
   margin: 2rem;
   display: flex;
-  /* align-content: center; */
   justify-content: flex-end;
 }
 select {

@@ -29,25 +29,9 @@ export default {
   },
   methods: {
     async getCategory() {
-      try {
-        const response = await fetch(
-          'https://frontend-test.idaproject.com/api/product-category',
-          {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        )
-        const result = response.json()
-        result.then((value) => {
-          if (value) {
-            this.Categories = value
-          }
-        })
-      } catch (error) {
-        console.error('Error:', error)
-      }
+      this.Categories = await this.$axios.$get(
+        'https://frontend-test.idaproject.com/api/product-category'
+      )
     },
   },
   created() {

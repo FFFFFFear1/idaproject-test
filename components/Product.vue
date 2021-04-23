@@ -5,11 +5,11 @@
         <div>
           <img src="~/assets/images/Star.png" alt="" />
         </div>
-        <p>{{ rating }}</p>
+        <p>{{ product.rating }}</p>
       </div>
       <div class="imageProduct">
         <img
-          :src="'https://frontend-test.idaproject.com' + photo"
+          :src="'https://frontend-test.idaproject.com' + product.photo"
           alt="imagePlace"
         />
       </div>
@@ -18,8 +18,10 @@
       </div>
     </div>
     <div class="description">
-      <p class="name">{{ name }}</p>
-      <p class="price">{{ price }}</p>
+      <p class="name">{{ product.name }}</p>
+      <p class="price">
+        {{ new Intl.NumberFormat('ru-RU').format(product.price) }} ₽
+      </p>
     </div>
   </div>
 </template>
@@ -27,11 +29,9 @@
 <script>
 export default {
   props: {
-    id: { type: Number },
-    name: { type: String },
-    photo: { type: String },
-    price: { type: Number },
-    rating: { type: Number },
+    product: {
+      type: Object,
+    },
   },
 }
 </script>
@@ -40,8 +40,7 @@ export default {
 .view {
   margin: 0.5rem 1rem;
   height: 65%;
-  display: grid;
-  grid-template-columns: 20% 72% 10%;
+  display: flex;
   justify-content: flex-start;
 }
 
@@ -66,8 +65,8 @@ export default {
 
 .imageProduct {
   width: 180px;
-  height: 200px;
-  margin: 0.5rem auto 0 auto;
+  height: 22 0px;
+  margin: 0.5rem 0 auto;
 }
 .imageProduct img {
   max-width: 100%;
@@ -87,7 +86,7 @@ export default {
   margin: 1rem;
 }
 .name {
-  font-size: 14px;
+  font-size: 12px;
   color: #6e747f;
   line-height: 35px;
 }

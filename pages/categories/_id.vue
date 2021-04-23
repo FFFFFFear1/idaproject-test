@@ -1,11 +1,16 @@
 <template>
   <div class="container">
-    <ProductList v-bind:products="products" />
+    <ProductList
+      v-bind:products="products"
+      v-bind:sortingRating="sortingRating"
+      v-bind:sortingPrice="sortingPrice"
+    />
   </div>
 </template>
 
 <script>
 import ProductList from '~/components/ProductList'
+import * as Enumerable from 'linq'
 export default {
   data() {
     return {
@@ -17,28 +22,22 @@ export default {
   },
   methods: {
     async getProduct() {
-      try {
-        const id =
-          this.$route.params.id !== undefined ? this.$route.params.id : 1
-        const response = await fetch(
-          'https://frontend-test.idaproject.com/api/product?category=' +
-            `${id}`,
-          {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        )
-        const result = response.json()
-        result.then((value) => {
-          if (value) {
-            this.products = value
-          }
-        })
-      } catch (error) {
-        console.error('Error:', error)
-      }
+      const id = this.$route.params.id !== undefined ? this.$route.params.id : 1
+      this.products = await this.$axios.$get(
+        'https://frontend-test.idaproject.com/api/product?category=' + `${id}`
+      )
+    },
+    sortingRating() {
+      let newArr = Enumerable.from(this.products)
+        .orderByDescending((item) => item.rating)
+        .toArray()
+      this.products = newArr
+    },
+    sortingPrice() {
+      let newArr = Enumerable.from(this.products)
+        .orderBy((item) => item.price)
+        .toArray()
+      this.products = newArr
     },
   },
   created() {
