@@ -1,31 +1,55 @@
 <template>
-  <div class="container">
+  <div>
+    <Header v-bind:openShop="openShop" />
     <Aside />
-    <ProductList />
-    
+    <Nuxt />
+    <Shop v-if="shopIsOpen" v-bind:openShop="openShop" />
   </div>
 </template>
 
 <script>
+import Header from '~/components/Header'
 import Aside from '~/components/Aside'
-import ProductList from '~/components/ProductList'
+import Shop from '~/components/modals/Shop'
 export default {
+  data() {
+    return {
+      shopIsOpen: false,
+    }
+  },
   components: {
+    Header,
     Aside,
-    ProductList,
+    Shop,
+  },
+  methods: {
+    openShop() {
+      this.shopIsOpen = !this.shopIsOpen
+    },
+  },
+  created() {
+    if (!this.$router.history.current.path.includes('/categories')) {
+      this.$router.replace({ path: '/categories' })
+    }
   },
 }
 </script>
 
 <style>
-.container {
-  font-family: 'PT Sans', sans-serif;
-  margin: 0 auto;
-  /* min-height: 100vh; */
-  width: 90%;
-  display: flex;
-  justify-content: center;
-  /* align-items: center; */
-  /* text-align: center; */
+html {
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
 }
 </style>

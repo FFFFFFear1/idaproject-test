@@ -5,11 +5,21 @@
     </div>
     <div class="header__shop-btn">
       <div class="header__shop-img">
-        <img src="~/assets/images/Shop.png" alt="shopImage" />
+        <img @click="openShop" src="~/assets/images/Shop.png" alt="shopImage" />
       </div>
     </div>
   </header>
 </template>
+
+<script>
+export default {
+  props: {
+    openShop: {
+      type: Function,
+    },
+  },
+}
+</script>
 
 <style scoped>
 header {
@@ -28,7 +38,7 @@ header {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
 }
 .header__title {
-  margin-left: 80px;
+  margin-left: 4vw;
   margin-top: 1.3rem;
   color: grey;
   font-size: 15px;

@@ -1,20 +1,31 @@
 <template>
   <div>
-    <Header />
+    <Header v-bind:openShop="openShop" />
+    <Aside />
     <Nuxt />
-    <!-- <Shop /> -->
+    <Shop v-if="shopIsOpen" v-bind:openShop="openShop" />
   </div>
 </template>
 
 <script>
 import Header from '~/components/Header'
 import Aside from '~/components/Aside'
-import Shop from '~/components/Shop'
+import Shop from '~/components/modals/Shop'
 export default {
+  data() {
+    return {
+      shopIsOpen: false,
+    }
+  },
   components: {
     Header,
     Aside,
     Shop,
+  },
+  methods: {
+    openShop() {
+      this.shopIsOpen = !this.shopIsOpen
+    },
   },
 }
 </script>

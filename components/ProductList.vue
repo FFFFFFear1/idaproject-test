@@ -8,18 +8,15 @@
       </select>
     </div>
     <div class="list">
-      <Product />
-      <Product />
-      <Product />
-      <Product />
-      <Product />
-      <Product />
-      <Product />
-      <Product />
-      <Product />
-      <Product />
-      <Product />
-      <Product />
+      <Product
+        v-for="product in products"
+        :key="product.index"
+        v-bind:id="product.id"
+        v-bind:name="product.name"
+        v-bind:photo="product.photo"
+        v-bind:price="product.price"
+        v-bind:rating="product.rating"
+      />
     </div>
   </div>
 </template>
@@ -27,13 +24,18 @@
 <script>
 import Product from '~/components/Product'
 export default {
+  props: {
+    products: {
+      type: Array,
+    },
+  },
   components: { Product },
 }
 </script>
 
 <style scoped>
 .containerList {
-  margin: 5rem 0 0 0;
+  margin: 5rem 0 0 12rem;
 }
 .selector {
   margin: 2rem;

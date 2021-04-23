@@ -5,21 +5,36 @@
         <div>
           <img src="~/assets/images/Star.png" alt="" />
         </div>
-        <p>4.5</p>
+        <p>{{ rating }}</p>
       </div>
       <div class="imageProduct">
-        <img src="~/assets/images/Backpack.png" alt="imagePlace" />
+        <img
+          :src="'https://frontend-test.idaproject.com' + photo"
+          alt="imagePlace"
+        />
       </div>
       <div class="add">
         <img src="~/assets/images/Shop.png" alt="" />
       </div>
     </div>
     <div class="description">
-      <p class="name">Рюкзак Louis Vuitton Discovery</p>
-      <p class="price">150 000 ₽</p>
+      <p class="name">{{ name }}</p>
+      <p class="price">{{ price }}</p>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    id: { type: Number },
+    name: { type: String },
+    photo: { type: String },
+    price: { type: Number },
+    rating: { type: Number },
+  },
+}
+</script>
 
 <style scoped>
 .view {
@@ -50,8 +65,8 @@
 }
 
 .imageProduct {
-  width: 150px;
-  height: 180px;
+  width: 180px;
+  height: 200px;
   margin: 0.5rem auto 0 auto;
 }
 .imageProduct img {

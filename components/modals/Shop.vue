@@ -4,9 +4,9 @@
       <div class="content">
         <div class="shop-title">
           <h2>Корзина</h2>
-          <button class="exit-btn" />
+          <button @click="openShop" class="exit-btn" />
         </div>
-        <div class="items">
+        <!-- <div class="items">
           <span class="section-title">Товары в корзине</span>
           <div class="itemList">
             <ShopItem />
@@ -14,18 +14,22 @@
             <ShopItem />
           </div>
         </div>
-        <div class="form">
+        <form id="info" class="form" action="">
           <span class="section-title">Оформить заказ</span>
           <input type="text" placeholder="Ваше имя" />
           <input type="text" placeholder="Телефон" />
           <input type="text" placeholder="Адрес" />
-          <button class="submit-data">Отправить</button>
-        </div>
+          <button type="submit" form="info" class="submit-data">
+            Отправить
+          </button>
+        </form> -->
 
-        <!-- <div class="placeholder">
+        <div class="placeholder">
           <p>Пока что вы ничего не добавили в корзину.</p>
-          <button class="submit-data">Отправить</button>
-        </div> -->
+          <button @click="openShop" class="submit-data">
+            Перейти к выбору
+          </button>
+        </div>
 
         <!-- <div>
           <div class="success">
@@ -46,6 +50,11 @@
 <script>
 import ShopItem from '~/components/ShopItem'
 export default {
+  props: {
+    openShop: {
+      type: Function,
+    },
+  },
   components: { ShopItem },
 }
 </script>
@@ -54,14 +63,15 @@ export default {
 input {
   border: none;
   padding: 15px;
-  color: #959dad;
+  /* color: #959dad; */
   border-radius: 0.5rem;
   background-color: #f8f8f8;
   margin: 1rem 0;
+  font-size: 18px;
 }
 .background {
+  position: fixed;
   z-index: 3;
-  position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
@@ -70,12 +80,12 @@ input {
   background-color: rgba(255, 255, 255, 0.74);
 }
 .shop {
+  position: fixed;
   font-family: 'PT Sans', sans-serif;
   z-index: 4;
-  position: relative;
-  width: 35%;
+  width: 32rem;
   height: 100%;
-  left: 65%;
+  right: 0;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.175);
   background-color: white;
 }
