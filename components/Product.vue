@@ -37,7 +37,7 @@ export default {
   methods: {
     async add() {
       let id = this.randomInteger(1, 9999999)
-      await store.commit('addProduct', {
+      await store.dispatch('addProduct', {
         id: id,
         photo: this.product.photo,
         name: this.product.name,

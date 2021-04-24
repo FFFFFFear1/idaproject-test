@@ -32,10 +32,13 @@ export default {
     Shop,
   },
   async mounted() {
-    const test = process.browser
-      ? JSON.parse(localStorage.getItem('savedProducts'))
-      : []
-    await store.commit('setProducts', test)
+    if (localStorage.getItem('savedProducts').trim()) {
+      const saved =
+        process.browser && JSON.parse(localStorage.getItem('savedProducts'))
+      await store.commit('SET_PRODUCTS', saved)
+    } else {
+      await store.commit('SET_PRODUCTS', [])
+    }
   },
   methods: {
     openShop() {
@@ -43,11 +46,11 @@ export default {
       this.submiting = this.shopIsOpen === false
     },
     submit() {
-      store.commit('setProducts', [])
+      store.commit('SET_PRODUCTS', [])
       this.submiting = true
     },
     async deleteItem(id) {
-      await store.commit('removeProduct', {
+      await store.dispatch('removeProduct', {
         id: id,
       })
     },

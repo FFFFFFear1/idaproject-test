@@ -5,7 +5,8 @@
     </div>
     <div class="header__shop-btn">
       <div class="header__shop-img">
-        <div class="count" v-if="products !== undefined && products.length > 0">
+        <!-- products !== undefined -->
+        <div class="count" v-if="products !== null && products.length > 0">
           {{ products.length }}
         </div>
         <img @click="openShop" src="~/assets/images/Shop.png" alt="shopImage" />

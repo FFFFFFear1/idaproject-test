@@ -7,16 +7,25 @@ export const store = new Vuex.Store({
     products: [],
   },
   mutations: {
-    async setProducts(state, products) {
-      state.products = products
+    async SET_PRODUCTS(state, product) {
+      state.products = product
+      localStorage.setItem('savedProducts', JSON.stringify(this.state.products))
     },
-    async addProduct(state, newProduct) {
-      state.products.push(newProduct)
-      localStorage.setItem('savedProducts', JSON.stringify(state.products))
+    async ADD_PRODUCT(state, product) {
+      state.products.push(product)
+      localStorage.setItem('savedProducts', JSON.stringify(this.state.products))
     },
-    async removeProduct(state, product) {
+    async REMOVE_PRODUCT(state, product) {
       state.products = state.products.filter((item) => item.id != product.id)
-      localStorage.setItem('savedProducts', JSON.stringify(state.products))
+      localStorage.setItem('savedProducts', JSON.stringify(this.state.products))
+    },
+  },
+  actions: {
+    async addProduct({ commit }, newProduct) {
+      commit('ADD_PRODUCT', newProduct)
+    },
+    async removeProduct({ commit }, product) {
+      commit('REMOVE_PRODUCT', product)
     },
   },
   getters: {
