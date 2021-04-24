@@ -106,7 +106,6 @@ input {
   bottom: 0;
   right: 0;
   left: 0;
-
   background-color: rgba(255, 255, 255, 0.74);
 }
 .shop {
@@ -133,6 +132,7 @@ input {
   cursor: pointer;
   font-weight: 700;
   height: 2rem;
+  width: 2rem;
   border: none;
   background-color: white;
   background: url('~/assets/images/Exit.svg');

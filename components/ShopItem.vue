@@ -66,10 +66,11 @@ export default {
 }
 
 .imageProduct {
-  width: 75px;
-  height: 95px;
+  width: 105px;
+  height: 125px;
 }
 .imageProduct img {
+  margin-top: 0.5rem;
   max-width: 100%;
   max-height: 100%;
   image-rendering: optimizeQuality;
