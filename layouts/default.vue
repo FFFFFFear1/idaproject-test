@@ -23,7 +23,6 @@ export default {
   data() {
     return {
       shopIsOpen: false,
-      shoppingBag: [],
       submiting: false,
     }
   },
@@ -31,6 +30,12 @@ export default {
     Header,
     Aside,
     Shop,
+  },
+  async mounted() {
+    const test = process.browser
+      ? JSON.parse(localStorage.getItem('savedProducts'))
+      : []
+    await store.commit('setProducts', test)
   },
   methods: {
     openShop() {
@@ -47,6 +52,7 @@ export default {
       })
     },
   },
+
   computed: {
     products() {
       return store.getters.getProducts

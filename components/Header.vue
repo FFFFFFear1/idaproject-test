@@ -21,7 +21,7 @@ export default {
       type: Function,
     },
     products: {
-      type: Array | [],
+      type: Array,
     },
   },
 }

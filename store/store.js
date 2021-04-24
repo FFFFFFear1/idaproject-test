@@ -12,9 +12,11 @@ export const store = new Vuex.Store({
     },
     async addProduct(state, newProduct) {
       state.products.push(newProduct)
+      localStorage.setItem('savedProducts', JSON.stringify(state.products))
     },
     async removeProduct(state, product) {
       state.products = state.products.filter((item) => item.id != product.id)
+      localStorage.setItem('savedProducts', JSON.stringify(state.products))
     },
   },
   getters: {
