@@ -5,6 +5,9 @@
     </div>
     <div class="header__shop-btn">
       <div class="header__shop-img">
+        <div v-if="products !== undefined && products.length > 0">
+          {{ products.length }}
+        </div>
         <img @click="openShop" src="~/assets/images/Shop.png" alt="shopImage" />
       </div>
     </div>
@@ -16,6 +19,9 @@ export default {
   props: {
     openShop: {
       type: Function,
+    },
+    products: {
+      type: Array | [],
     },
   },
 }

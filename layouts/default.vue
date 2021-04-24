@@ -1,13 +1,19 @@
 <template>
   <div>
-    <Header v-bind:openShop="openShop" />
+    <Header v-bind:openShop="openShop" v-bind:products="products" />
+    <Shop
+      v-if="shopIsOpen"
+      v-bind:products="products"
+      v-bind:openShop="openShop"
+      v-bind:deleteItem="deleteItem"
+    />
     <Aside />
     <Nuxt />
-    <Shop v-if="shopIsOpen" v-bind:openShop="openShop" />
   </div>
 </template>
 
 <script>
+import { store } from '~/store/store'
 import Header from '~/components/Header'
 import Aside from '~/components/Aside'
 import Shop from '~/components/modals/Shop'
@@ -27,15 +33,16 @@ export default {
     openShop() {
       this.shopIsOpen = !this.shopIsOpen
     },
+    async deleteItem(id) {
+      await store.commit('removeProduct', {
+        id: id,
+      })
+    },
   },
-
   computed: {
-    // products() {
-    //   return this.$store.state.products
-    // },
-  },
-  created() {
-    // console.log(this.$store.state.products)
+    products() {
+      return store.getters.getProducts
+    },
   },
 }
 </script>

@@ -1,35 +1,26 @@
-// import Vue from 'vue'
-// import Vuex from 'vuex'
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-// Vue.use(Vuex)
-
-// export const store = new Vuex.Store({
-//   modules: {
-//     products: [],
-//   },
-// })
-
-// import getProducts from '~/api/products'
-
-export const state = {
-  products: [],
-}
-
-export const mutations = {
-  async setProducts(state, { products }) {
-    state.products = products
+Vue.use(Vuex)
+export const store = new Vuex.Store({
+  state: {
+    products: [],
   },
-}
-
-export const getters = {
-  products: () => state.products,
-}
-
-export const actions = {
-  async addProduct(product) {
-    state.products.push(product)
+  mutations: {
+    async setProducts(state, products) {
+      state.products = products
+    },
+    async addProduct(state, newProduct) {
+      state.products.push(newProduct)
+    },
+    async removeProduct(state, product) {
+      state.products = state.products.filter((item) => item.id != product.id)
+      // state.products = state.products.filter((item) => item.id === product.id)
+    },
   },
-  async removeProduct(product) {
-    state.products.filter((item) => item.id !== product.id)
+  getters: {
+    getProducts: (state) => {
+      return state.products
+    },
   },
-}
+})

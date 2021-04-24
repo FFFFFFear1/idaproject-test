@@ -6,25 +6,30 @@
           <h2>Корзина</h2>
           <button @click="openShop" class="exit-btn" />
         </div>
-        <!-- <div class="items">
-          <span class="section-title">Товары в корзине</span>
-          <div class="itemList">
-            <ShopItem />
-            <ShopItem />
-            <ShopItem />
+        <div v-if="products.length > 0">
+          <div class="items">
+            <span class="section-title">Товары в корзине</span>
+            <div class="itemList">
+              <ShopItem
+                v-for="product in products"
+                :key="product.id"
+                v-bind:product="product"
+                v-bind:deleteItem="deleteItem"
+              />
+            </div>
           </div>
+          <form id="info" class="form" action="">
+            <span class="section-title">Оформить заказ</span>
+            <input type="text" placeholder="Ваше имя" />
+            <input type="text" placeholder="Телефон" />
+            <input type="text" placeholder="Адрес" />
+            <button type="submit" form="info" class="submit-data">
+              Отправить
+            </button>
+          </form>
         </div>
-        <form id="info" class="form" action="">
-          <span class="section-title">Оформить заказ</span>
-          <input type="text" placeholder="Ваше имя" />
-          <input type="text" placeholder="Телефон" />
-          <input type="text" placeholder="Адрес" />
-          <button type="submit" form="info" class="submit-data">
-            Отправить
-          </button>
-        </form> -->
 
-        <div class="placeholder">
+        <div v-else class="placeholder">
           <p>Пока что вы ничего не добавили в корзину.</p>
           <button @click="openShop" class="submit-data">
             Перейти к выбору
@@ -52,6 +57,12 @@ import ShopItem from '~/components/ShopItem'
 export default {
   props: {
     openShop: {
+      type: Function,
+    },
+    products: {
+      type: Array | [],
+    },
+    deleteItem: {
       type: Function,
     },
   },

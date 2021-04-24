@@ -2,24 +2,48 @@
   <div class="product-container">
     <div class="view">
       <div class="imageProduct">
-        <img src="~/assets/images/Backpack.png" alt="imagePlace" />
+        <img
+          :src="'https://frontend-test.idaproject.com' + product.photo"
+          alt="imagePlace"
+        />
       </div>
     </div>
     <div class="description">
-      <p class="name">Рюкзак Louis Vuitton Discovery</p>
-      <p class="price">150 000 ₽</p>
+      <p class="name">{{ product.name }}</p>
+      <p class="price">
+        {{ new Intl.NumberFormat('ru-RU').format(product.price) }} ₽
+      </p>
       <div class="rating">
         <div>
           <img src="~/assets/images/Star.png" alt="" />
         </div>
-        <p>4.5</p>
+        <p>{{ product.rating }}</p>
       </div>
     </div>
-    <div class="delete">
+    <div @click="deleteProduct()" class="delete">
       <img src="~/assets/images/Delete.svg" alt="" />
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    product: {
+      type: Object,
+    },
+    deleteItem: {
+      type: Function,
+    },
+  },
+
+  methods: {
+    async deleteProduct() {
+      this.deleteItem(this.product.id)
+    },
+  },
+}
+</script>
 
 <style scoped>
 .delete {
