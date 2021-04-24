@@ -3,6 +3,8 @@
     <Header v-bind:openShop="openShop" v-bind:products="products" />
     <Shop
       v-if="shopIsOpen"
+      v-bind:submiting="submiting"
+      v-bind:submit="submit"
       v-bind:products="products"
       v-bind:openShop="openShop"
       v-bind:deleteItem="deleteItem"
@@ -22,6 +24,7 @@ export default {
     return {
       shopIsOpen: false,
       shoppingBag: [],
+      submiting: false,
     }
   },
   components: {
@@ -32,6 +35,11 @@ export default {
   methods: {
     openShop() {
       this.shopIsOpen = !this.shopIsOpen
+      this.submiting = this.shopIsOpen === false
+    },
+    submit() {
+      store.commit('setProducts', [])
+      this.submiting = true
     },
     async deleteItem(id) {
       await store.commit('removeProduct', {

@@ -37,7 +37,6 @@ export default {
   methods: {
     async add() {
       let id = this.randomInteger(1, 9999999)
-      console.log(id)
       await store.commit('addProduct', {
         id: id,
         photo: this.product.photo,
@@ -45,7 +44,6 @@ export default {
         price: this.product.price,
         rating: this.product.rating,
       })
-      console.log(store.getters.getProducts)
     },
 
     randomInteger(min, max) {

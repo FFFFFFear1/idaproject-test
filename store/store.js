@@ -15,7 +15,6 @@ export const store = new Vuex.Store({
     },
     async removeProduct(state, product) {
       state.products = state.products.filter((item) => item.id != product.id)
-      // state.products = state.products.filter((item) => item.id === product.id)
     },
   },
   getters: {

@@ -5,7 +5,7 @@
     </div>
     <div class="header__shop-btn">
       <div class="header__shop-img">
-        <div v-if="products !== undefined && products.length > 0">
+        <div class="count" v-if="products !== undefined && products.length > 0">
           {{ products.length }}
         </div>
         <img @click="openShop" src="~/assets/images/Shop.png" alt="shopImage" />
@@ -63,5 +63,17 @@ header {
 .header__shop-btn img:hover {
   filter: contrast(10%);
   transition: 500ms;
+}
+.count {
+  z-index: 2;
+  font-size: 12px;
+  color: white;
+  text-align: center;
+  width: 15px;
+  position: fixed;
+  top: 0.85rem;
+  right: 90px;
+  background-color: gray;
+  border-radius: 50%;
 }
 </style>

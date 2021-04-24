@@ -18,25 +18,27 @@
               />
             </div>
           </div>
-          <form id="info" class="form" action="">
+          <form @submit.prevent="submit" id="info" class="form" action="">
             <span class="section-title">Оформить заказ</span>
-            <input type="text" placeholder="Ваше имя" />
-            <input type="text" placeholder="Телефон" />
-            <input type="text" placeholder="Адрес" />
-            <button type="submit" form="info" class="submit-data">
-              Отправить
-            </button>
+            <input
+              type="text"
+              pattern="^[A-Za-zА-Яа-яЁё]+$"
+              placeholder="Ваше имя"
+              required
+            />
+            <input
+              type="text"
+              v-mask="'+7 (###) ###-##-##'"
+              v-model="inputPhoneModel"
+              placeholder="Телефон"
+              required
+            />
+            <input type="text" placeholder="Адрес" required />
+            <button type="submit" class="submit-data">Отправить</button>
           </form>
         </div>
 
-        <div v-else class="placeholder">
-          <p>Пока что вы ничего не добавили в корзину.</p>
-          <button @click="openShop" class="submit-data">
-            Перейти к выбору
-          </button>
-        </div>
-
-        <!-- <div>
+        <div v-else-if="submiting">
           <div class="success">
             <div class="success-img">
               <img src="~/assets/images/OK.png" alt="okImage" />
@@ -46,7 +48,14 @@
               Вскоре наш менеджер свяжется с Вами
             </p>
           </div>
-        </div> -->
+        </div>
+
+        <div v-else class="placeholder">
+          <p>Пока что вы ничего не добавили в корзину.</p>
+          <button @click="openShop" class="submit-data">
+            Перейти к выбору
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -55,6 +64,11 @@
 <script>
 import ShopItem from '~/components/ShopItem'
 export default {
+  data() {
+    return {
+      inputPhoneModel: '',
+    }
+  },
   props: {
     openShop: {
       type: Function,
@@ -63,6 +77,12 @@ export default {
       type: Array | [],
     },
     deleteItem: {
+      type: Function,
+    },
+    submiting: {
+      type: Boolean,
+    },
+    submit: {
       type: Function,
     },
   },
@@ -74,7 +94,6 @@ export default {
 input {
   border: none;
   padding: 15px;
-  /* color: #959dad; */
   border-radius: 0.5rem;
   background-color: #f8f8f8;
   margin: 1rem 0;
