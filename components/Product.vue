@@ -52,25 +52,29 @@ export default {
     },
 
     fadeIn(element) {
-      gsap.to(element, 0, {
-        opacity: 0,
-        y: 60,
-        ease: 'power4.out',
-        stagger: {
-          amount: 0.5,
-        },
-      })
+      if (document.querySelector(element)) {
+        gsap.to(element, 0, {
+          opacity: 0,
+          y: 60,
+          ease: 'power4.out',
+          stagger: {
+            amount: 0.5,
+          },
+        })
+      }
     },
     fadeOut(element) {
-      gsap.to(element, 1, {
-        opacity: 1,
-        y: 0,
-        ease: 'power4.out',
-        stagger: {
-          amount: 0.5,
-        },
-        delay: this.product.id * 0.005,
-      })
+      if (document.querySelector(element)) {
+        gsap.to(element, 1, {
+          opacity: 1,
+          y: 0,
+          ease: 'power4.out',
+          stagger: {
+            amount: 0.5,
+          },
+          delay: this.product.id * 0.005,
+        })
+      }
     },
   },
   created() {
@@ -80,8 +84,8 @@ export default {
 }
 </script>
 
-<style scoped>
-.product-container {
+<style>
+#product-container {
   width: 264px;
   height: 272px;
   margin-bottom: 1rem;
