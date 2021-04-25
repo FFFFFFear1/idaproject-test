@@ -2,11 +2,9 @@
   <div>
     <Header v-bind:openShop="openShop" v-bind:products="products" />
     <Shop
-      v-if="shopIsOpen"
       v-bind:submiting="submiting"
       v-bind:submit="submit"
       v-bind:products="products"
-      v-bind:openShop="openShop"
       v-bind:deleteItem="deleteItem"
     />
     <Aside />
@@ -19,10 +17,10 @@ import { store } from '~/store/store'
 import Header from '~/components/Header'
 import Aside from '~/components/Aside'
 import Shop from '~/components/modals/Shop'
+import gsap from 'gsap'
 export default {
   data() {
     return {
-      shopIsOpen: false,
       submiting: false,
     }
   },
@@ -41,10 +39,6 @@ export default {
     }
   },
   methods: {
-    openShop() {
-      this.shopIsOpen = !this.shopIsOpen
-      this.submiting = this.shopIsOpen === false
-    },
     submit() {
       store.commit('SET_PRODUCTS', [])
       this.submiting = true
@@ -53,6 +47,33 @@ export default {
       await store.dispatch('removeProduct', {
         id: id,
       })
+    },
+
+    openShopAnim(element) {
+      if (document.querySelector(element)) {
+        gsap.to(element, 1, {
+          right: 0,
+          ease: 'power4.out',
+          stagger: {
+            amount: 0.5,
+          },
+        })
+      }
+    },
+    openBackAnim(element) {
+      if (document.querySelector(element)) {
+        gsap.to(element, 2, {
+          left: 0,
+          ease: 'power4.out',
+          stagger: {
+            amount: 0.5,
+          },
+        })
+      }
+    },
+    openShop() {
+      this.openShopAnim('.shop')
+      this.openBackAnim('#background')
     },
   },
 

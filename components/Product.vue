@@ -84,7 +84,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #product-container {
   width: 264px;
   height: 272px;

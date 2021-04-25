@@ -1,10 +1,10 @@
 <template>
-  <div class="background">
+  <div id="background">
     <div class="shop">
       <div class="content">
         <div class="shop-title">
           <h2>Корзина</h2>
-          <button @click="openShop" class="exit-btn" />
+          <button @click="closeShopTrigger" class="exit-btn" />
         </div>
         <div v-if="products.length > 0">
           <div class="items">
@@ -52,7 +52,7 @@
 
         <div v-else class="placeholder">
           <p>Пока что вы ничего не добавили в корзину.</p>
-          <button @click="openShop" class="submit-data">
+          <button @click="closeShopTrigger" class="submit-data">
             Перейти к выбору
           </button>
         </div>
@@ -63,6 +63,7 @@
 
 <script>
 import ShopItem from '~/components/ShopItem'
+import gsap from 'gsap'
 export default {
   data() {
     return {
@@ -87,6 +88,34 @@ export default {
     },
   },
   components: { ShopItem },
+  methods: {
+    closeShopAnim(element) {
+      if (document.querySelector(element)) {
+        gsap.to(element, 2, {
+          right: '-100%',
+          ease: 'power4.out',
+          stagger: {
+            amount: 0.5,
+          },
+        })
+      }
+    },
+    closeBackAnim(element) {
+      if (document.querySelector(element)) {
+        gsap.to(element, 1, {
+          left: '100%',
+          ease: 'power4.out',
+          stagger: {
+            amount: 0.5,
+          },
+        })
+      }
+    },
+    closeShopTrigger() {
+      this.closeShopAnim('.shop')
+      this.closeBackAnim('#background')
+    },
+  },
 }
 </script>
 
@@ -99,13 +128,13 @@ input {
   margin: 1rem 0;
   font-size: 18px;
 }
-.background {
+#background {
   position: fixed;
   z-index: 3;
   top: 0;
   bottom: 0;
   right: 0;
-  left: 0;
+  left: 100%;
   background-color: rgba(255, 255, 255, 0.74);
 }
 .shop {
@@ -114,7 +143,7 @@ input {
   z-index: 4;
   width: 32rem;
   height: 100%;
-  right: 0;
+  right: -100%;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.175);
   background-color: white;
 }
