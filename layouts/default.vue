@@ -51,7 +51,7 @@ export default {
 
     openShopAnim(element) {
       if (document.querySelector(element)) {
-        gsap.to(element, 1, {
+        gsap.to(element, 0.5, {
           right: 0,
           ease: 'power4.out',
           stagger: {
@@ -62,7 +62,7 @@ export default {
     },
     openBackAnim(element) {
       if (document.querySelector(element)) {
-        gsap.to(element, 2, {
+        gsap.to(element, 0.5, {
           left: 0,
           ease: 'power4.out',
           stagger: {
