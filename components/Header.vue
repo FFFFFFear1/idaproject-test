@@ -5,7 +5,6 @@
     </div>
     <div class="header__shop-btn">
       <div class="header__shop-img">
-        <!-- products !== undefined -->
         <div class="count" v-if="products !== null && products.length > 0">
           {{ products.length }}
         </div>

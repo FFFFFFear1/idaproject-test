@@ -12,6 +12,7 @@
 import ProductList from '~/components/ProductList'
 import * as Enumerable from 'linq'
 export default {
+  
   data() {
     return {
       products: [],

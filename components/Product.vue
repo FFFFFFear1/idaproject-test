@@ -1,5 +1,5 @@
 <template>
-  <div class="product-container">
+  <div id="product-container">
     <div class="view">
       <div class="rating">
         <div>
@@ -28,6 +28,7 @@
 
 <script>
 import { store } from '~/store/store'
+import gsap from 'gsap'
 export default {
   props: {
     product: {
@@ -45,16 +46,48 @@ export default {
         rating: this.product.rating,
       })
     },
-
     randomInteger(min, max) {
       let rand = min - 0.5 + Math.random() * (max - min + 1)
       return Math.round(rand)
     },
+
+    fadeIn(element) {
+      gsap.to(element, 0, {
+        opacity: 0,
+        y: 60,
+        ease: 'power4.out',
+        stagger: {
+          amount: 0.5,
+        },
+      })
+    },
+    fadeOut(element) {
+      gsap.to(element, 1, {
+        opacity: 1,
+        y: 0,
+        ease: 'power4.out',
+        stagger: {
+          amount: 0.5,
+        },
+        delay: this.product.id * 0.005,
+      })
+    },
+  },
+  created() {
+    this.fadeIn('#product-container')
+    this.fadeOut('#product-container')
   },
 }
 </script>
 
 <style scoped>
+.product-container {
+  width: 264px;
+  height: 272px;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.07);
+}
 .view {
   margin: 0.5rem 1rem;
   height: 65%;
@@ -90,14 +123,6 @@ export default {
   max-width: 100%;
   max-height: 100%;
   image-rendering: optimizeQuality;
-}
-
-.product-container {
-  width: 264px;
-  height: 272px;
-  margin-bottom: 1rem;
-  border-radius: 0.5rem;
-  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.07);
 }
 
 .description {

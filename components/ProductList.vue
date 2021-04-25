@@ -15,7 +15,7 @@
     <div class="list">
       <Product
         v-for="product in products"
-        :key="product.index"
+        :key="product.id"
         v-bind:product="product"
       />
     </div>
@@ -44,15 +44,19 @@ export default {
   components: { Product },
   methods: {
     sort(param) {
-      console.log(param)
       return param === 'price' ? this.sortingPrice() : this.sortingRating()
     },
   },
-  
 }
 </script>
 
 <style scoped>
+select {
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
 .containerList {
   margin: 5rem 0 0 12rem;
 }
@@ -60,12 +64,6 @@ export default {
   margin: 2rem;
   display: flex;
   justify-content: flex-end;
-}
-select {
-  border: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
 }
 .list {
   width: 70rem;
